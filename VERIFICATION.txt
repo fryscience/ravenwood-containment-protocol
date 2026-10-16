@@ -1,0 +1,35 @@
+ACTUAL VERIFICATION — LOCAL ONLY
+
+PASSED
+1. Source syntax, internal JSON, default Function endpoint and single Function entry checks.
+2. Static production frontend generation and reference validation.
+3. Five Node request-service suites: anonymous sessions, two-player start, conflict retries, concurrent updates, ownership/prerequisites, input validation, forged score rejection, score/winner derivation, safe errors and Function-source export. The Function-source import test explicitly replaces the SDK with a test double.
+4. Full two-client route using two isolated JavaScript VM environments, the actual frontend HTTP adapter and the actual request service. The store is an in-memory, ETag-enforcing test double. Scientific console actions are exercised for all six zones; three-round scoring and final team winner pass; certificates remain local.
+5. Original uploaded single-player ZIP is byte-identical.
+
+FAILED / BLOCKED
+Full production build: official Netlify SDK package retrieval returned HTTP 403. Runtime dependency resolution/locking, SDK module loading and actual Netlify Function bundling did not complete. No verified packaged Function is included. The archive contains Function source and helpers, not a tested cloud deployment artifact.
+
+NOT RUN
+Real Netlify Blobs reads/writes, real conditional-write contention, cloud function invocation, actual two-browser connection, refresh/rejoin against a backend, performance/load/cost measurement, real accessibility/browser layout and print/PDF checks. Do not interpret isolated JavaScript VM clients as independent browsers.
+
+The dependency-free tooling lockfile does not claim to lock the SDK or its transitive dependencies. The build script attempts to install the pinned official SDK automatically, but that attempt failed here.
+
+TWO-CLIENT THREE-ROUND ROUTE OUTPUT
+PASS host client creates room using transport contract
+PASS second client joins same room in offline transport test
+PASS both clients enter original Zone 1 with movement released
+PASS shared pickups, reader and console power synchronize through client integration
+PASS different teammate verifies evidence; both clients recognize same Zone 1 completion; certificates remain locked
+PASS both clients complete shared scientific investigation and independent review in Zone 2
+PASS round 1 completed with team score 200/600
+PASS both clients complete shared scientific investigation and independent review in Zone 3
+PASS both clients complete shared scientific investigation and independent review in Zone 4
+PASS round 2 completed with team score 400/600
+PASS both clients complete shared scientific investigation and independent review in Zone 5
+PASS both clients complete shared scientific investigation and independent review in Zone 6
+PASS round 3 complete: 600/600; final winners: Investigation team
+PASS transport-disconnect pauses local movement; reconnect restores activity, investigator and certificate eligibility
+TEAM SIZE 2
+PASS six-zone team completion, both individual certificates, and certificate-name privacy
+LOCAL ONLY: real frontend adapter + service; Blobs storage simulated. Netlify SDK, cloud deployment and independent browsers were not exercised.
