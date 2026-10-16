@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ravenwood: Containment Protocol | Multiplayer Edition</title>
+<meta name="description" content="Optional, ungraded Zombie Files bonus game: investigate Subject Z-03 in the abandoned Ravenwood facility.">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<a class="skip" href="#game">Skip to the game</a>
+<header id="bar">
+ <div class="bar-row">
+  <div class="brand"><span class="ts">TOP SECRET</span><strong>RAVENWOOD: CONTAINMENT PROTOCOL</strong><span class="sub">Multiplayer Edition | Six-zone mission</span></div>
+  <nav class="bar-main" aria-label="Game panels">
+   <button class="btn gold" id="b-team" type="button">Team / Lobby</button>
+   <button class="btn" id="b-inv" type="button" aria-haspopup="dialog">Inventory <kbd>I</kbd></button>
+   <button class="btn" id="b-jour" type="button" aria-haspopup="dialog">Journal <kbd>J</kbd></button>
+   <button class="btn" id="b-map" type="button" aria-haspopup="dialog">Map <kbd>M</kbd></button>
+   <button class="btn" id="b-guide" type="button" aria-haspopup="dialog" title="Menu-based way to reach objects without walking">Investigation Menu</button>
+   <button class="btn" id="b-menu" type="button" aria-haspopup="dialog">Menu <kbd>Esc</kbd></button>
+  </nav>
+ </div>
+ <div class="bar-row tools">
+  <div class="tgroup" role="group" aria-label="Read aloud">
+   <span class="lbl">Read aloud</span>
+   <button class="btn small primary" id="tts-play" type="button">Read aloud</button>
+   <button class="btn small" id="tts-pause" type="button" disabled>Pause</button>
+   <button class="btn small" id="tts-resume" type="button" disabled>Resume</button>
+   <button class="btn small" id="tts-stop" type="button" disabled>Stop</button>
+   <label class="sr-only" for="tts-speed">Reading speed</label>
+   <select id="tts-speed"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select>
+  </div>
+  <div class="tgroup" role="group" aria-label="Sound">
+   <span class="lbl">Sound</span>
+   <button class="btn small" id="snd-toggle" type="button" aria-pressed="false">Sound is off. Unmute</button>
+   <label class="sr-only" for="snd-vol">Volume</label>
+   <input id="snd-vol" type="range" min="0" max="100" value="50">
+   <label class="chk"><input type="checkbox" id="snd-music"> Music</label>
+   <label class="chk"><input type="checkbox" id="snd-sfx" checked> Effects</label>
+  </div>
+  <div class="tgroup" role="group" aria-label="Progress">
+   <span class="lbl">Progress</span>
+   <button class="btn small" id="save-btn" type="button">Save Progress</button>
+   <button class="btn small" id="export-btn" type="button">Download Backup</button>
+   <button class="btn small" id="import-btn" type="button">Import Backup</button>
+   <button class="btn small" id="reset-btn" type="button">Reset Game</button>
+   <input type="file" id="file-input" accept=".json,application/json" hidden>
+  </div>
+  <span class="tmsg" id="tts-msg" hidden></span>
+ </div>
+ <div class="confirm" id="confirm" hidden role="alertdialog" aria-labelledby="confirm-msg">
+  <span id="confirm-msg"></span>
+  <button class="btn small gold" id="confirm-yes" type="button">Yes</button>
+  <button class="btn small" id="confirm-no" type="button">Cancel</button>
+ </div>
+</header>
+<section id="team-panel" aria-label="Multiplayer connection"><span id="team-status" role="status">Not connected</span><span id="team-controls" hidden><label for="team-ping">Team message</label> <select id="team-ping"><option value="">Choose a quick message</option><option>NEED HELP</option><option>FOUND EVIDENCE</option><option>COME HERE</option><option>READY</option><option>CHECK THE JOURNAL</option><option>ACTIVATE NOW</option></select></span><span id="team-message" role="status" aria-live="polite"></span></section>
+<main id="stagewrap">
+ <div id="stage">
+  <canvas id="game" width="1280" height="720" tabindex="0" role="application" aria-label="Game view. Use the arrow keys or W A S D to walk. Press E to interact. The Investigation Menu lets you reach every object without walking."></canvas>
+  <div id="hud-obj" class="hud"><div class="hz" id="hz"></div><div class="ho" id="ho"></div><div class="hb"><button class="btn small" id="b-hint" type="button" aria-expanded="false">Hint</button></div><div class="hint-text" id="hint-text" hidden></div></div>
+  <button id="hud-prompt" class="hud" type="button" hidden></button>
+  <div id="ability-hud" class="hud" role="status" aria-live="polite" hidden></div>
+  <div id="hud-keys" class="hud"><span><kbd>WASD</kbd> or <kbd>Arrows</kbd> move</span><span><kbd>E</kbd> interact</span><span><kbd>I</kbd> inventory</span><span><kbd>J</kbd> journal</span><span><kbd>M</kbd> map</span><span><kbd>Esc</kbd> pause</span></div>
+  <div id="banner" class="hud" hidden></div>
+  <div id="dialog" class="hud" role="dialog" aria-label="Message" hidden><p id="dlg-text"></p><button class="btn small primary" id="dlg-close" type="button">Close (E)</button></div>
+ </div>
+</main>
+<div id="modal-root"></div>
+<div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+<div id="notice" role="status" hidden></div>
+
+<script src="js/core.js"></script>
+<script src="js/art.js"></script>
+<script src="js/world.js"></script>
+<script src="js/world2.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/tts.js"></script>
+<script src="js/save.js"></script>
+<script src="js/game.js"></script>
+<script src="js/puzzles.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/cert.js"></script>
+
+<script src="js/investigators.js"></script>
+
+<script src="js/protocol.js"></script>
+<script src="js/netlify-adapter.js"></script>
+<script src="js/team-science.js"></script>
+<script src="js/multiplayer.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
