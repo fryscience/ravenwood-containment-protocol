@@ -1,0 +1,30 @@
+{
+  "project": "Ravenwood: Containment Protocol",
+  "backend": "Netlify Function + Netlify Blobs",
+  "endpoint": "/.netlify/functions/game",
+  "roundMode": "cooperative team",
+  "rounds": 3,
+  "zones": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "localTwoClientRoutePassed": true,
+  "finalTeamScore": 600,
+  "finalWinner": "Investigation team",
+  "frontendBuildPassed": true,
+  "productionBuildPassed": false,
+  "officialSDKDownload": "HTTP 403",
+  "packagedFunctionVerified": false,
+  "runtimeDependenciesLocked": false,
+  "independentBrowserTested": false,
+  "deployed": false,
+  "netlifyDropReady": false,
+  "releaseBlockers": [
+    "Netlify Drop does not build/deploy this serverless Function project",
+    "Official SDK download denied with HTTP 403; full production bundle and runtime lock unavailable"
+  ]
+}

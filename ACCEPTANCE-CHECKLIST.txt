@@ -1,0 +1,21 @@
+RELEASE CHECKLIST — NOT COMPLETED
+
+[ ] Resolve official Netlify SDK installation without HTTP 403.
+[ ] Resolve and lock the runtime dependency tree; verify a clean production install.
+[ ] Complete the production build with the actual SDK.
+[ ] Have Netlify bundle the actual game.ts Function with its helpers and SDK.
+[ ] Invoke that actual packaged Function; verify strong reads and conditional writes against real Blobs.
+[ ] Deploy using a Function-capable deployment route. Netlify Drop alone is insufficient.
+[ ] Confirm /.netlify/functions/game responds and /api/game is unused.
+[ ] Use two independent browsers/devices with distinct sessions in the same room.
+[ ] Verify four character choices, distinctive appearance, movement and collision in Zone 1 first.
+[ ] Complete round 1 (Zones 1–2); both browsers show 200/600.
+[ ] Complete round 2 (Zones 3–4); both browsers show 400/600.
+[ ] Complete round 3 (Zones 5–6); both browsers show 600/600 and Investigation team as the winner.
+[ ] Check wrong answers, simultaneous actions, control passing, invalid reviews and dropped responses/retries.
+[ ] Refresh/rejoin and verify identity, location, inventory, progress and score.
+[ ] Disconnect the operator; verify presence expiry, host transfer and reclaiming console control.
+[ ] Confirm optional real certificate names are absent from Blobs and work locally with printing.
+[ ] Test three/four players, school filtering, keyboard/screen-reader controls and narrow displays.
+[ ] Measure real latency, write conflicts, function invocations, storage traffic and costs at classroom load.
+[ ] Obtain explicit owner permission before publishing. No publishing has occurred.
